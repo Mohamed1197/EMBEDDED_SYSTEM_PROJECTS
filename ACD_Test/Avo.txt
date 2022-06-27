@@ -1,0 +1,86 @@
+
+/* Lib */
+#include "STD_TYPES.h"
+#include "BIT_MATH.h"
+#define F_CPU 8000000UL
+#include<util/delay.h>
+/* MCAL */
+#include "DIO_interface.h"
+#include "ADC_interface.h"
+
+/* HAL */
+#include "LCD_interface.h"
+#include "KPD_interface.h"
+
+
+int main(void)
+{
+
+    u8 Local_u8Key;
+	u16 Local_u16DigitalValue=0,Local_u16VoltValue=0,Local_u16ResValue=0;
+    u16 value , Num1=0;
+    DIO_u8Init();
+    LCD_voidInit();
+    ADC_voidInit();
+    LCD_voidCursorBlinkerOff();
+    LCD_u8_GoTo_XY(0,1);
+    LCD_voidWriteString("Please Choose :");
+    _delay_ms(2000);
+    LCD_voidClear();
+
+    while(1)
+    {
+
+       LCD_u8_GoTo_XY(0,0);
+       LCD_voidWriteString("1- VOLT");
+       LCD_u8_GoTo_XY(1,0);
+       LCD_voidWriteString("2- OHM ");
+
+       KPD_u8GetKey(&Local_u8Key);
+       if(Local_u8Key != KPD_u8_KEY_NOT_PRESSED)
+       {
+           LCD_voidClear();
+    	   switch(Local_u8Key)
+    	   {
+
+    	   case '1':
+    			while(1)
+    			{
+    		   /* Read Analog Signal */
+     		    ADC_u8GetDigitalValueSunchNonBlocking(ADC_u8_CHANNEL_1,&Local_u16DigitalValue);
+    			Local_u16VoltValue = (u16)(((u32)Local_u16DigitalValue * 5000UL) /1024) ;
+    			LCD_u8_GoTo_XY(1,4);
+    			LCD_voidWriteNumber(Local_u16VoltValue);
+     		    LCD_u8_GoTo_XY(1,9);
+   			    LCD_voidWriteString("mVolt");
+    		    _delay_ms(1000);
+    		    LCD_voidClear();
+    			}
+    		   break;
+    	   case '2':
+    		   while(1)
+    		   {
+   			   /* Read Analog Signal */
+    		   ADC_u8GetDigitalValueSunchNonBlocking(ADC_u8_CHANNEL_1,&Local_u16DigitalValue);
+   			   Local_u16VoltValue = (u16)(((u32)Local_u16DigitalValue * 5000UL) /1024) ;
+    		   Local_u16ResValue=Local_u16VoltValue*2;
+    		   LCD_u8_GoTo_XY(1,4);
+    		   LCD_voidWriteNumber(Local_u16ResValue);
+    		   LCD_u8_GoTo_XY(1,9);
+    		   LCD_voidSendChar(244);
+    		   _delay_ms(1000);
+    		    LCD_voidClear();
+    		   }
+    	       break;
+
+    	   }
+
+    	   }
+
+
+
+
+    }
+
+return 0;
+}

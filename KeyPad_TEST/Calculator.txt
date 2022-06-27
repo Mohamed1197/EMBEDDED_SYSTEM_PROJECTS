@@ -1,0 +1,166 @@
+
+/* Lib */
+#include "STD_TYPES.h"
+#include "BIT_MATH.h"
+#define F_CPU 8000000UL
+#include<util/delay.h>
+/* MCAL */
+#include "DIO_interface.h"
+
+/* HAL */
+#include "LCD_interface.h"
+#include "KPD_interface.h"
+
+int main(void)
+{
+    u8 Local_u8Key,Operator = 0;
+    u16 Num1=0,Num2=0,value=0,value2 =0 ,Result=0;
+	DIO_u8Init();
+    LCD_voidInit();
+
+    while(1)
+    {
+
+
+       KPD_u8GetKey(&Local_u8Key);
+       if(Local_u8Key != KPD_u8_KEY_NOT_PRESSED)
+       {
+
+    	   switch(Local_u8Key)
+    	   {
+    	   case '0':
+    		   value =0;
+    		   Num1 = (Num1*10) +value ;
+    		   LCD_voidSendChar(Local_u8Key);
+    		   break;
+    	   case '1':
+    		   value =1;
+    		   Num1 = (Num1*10) +value ;
+    		   LCD_voidSendChar(Local_u8Key);
+    		   break;
+    	   case '2':
+    	       value =2;
+    	       Num1 = (Num1*10) +value ;
+    		   LCD_voidSendChar(Local_u8Key);
+    	       break;
+    	   case '3':
+    	       value =3;
+    	       Num1 = (Num1*10) +value ;
+    		   LCD_voidSendChar(Local_u8Key);
+    	       break;
+    	   case '4':
+    	       value =4;
+    	       Num1 = (Num1*10) +value ;
+    		   LCD_voidSendChar(Local_u8Key);
+    	       break;
+    	   case '5':
+    	       value =5;
+    	       Num1 = (Num1*10) +value ;
+    		   LCD_voidSendChar(Local_u8Key);
+    	       break;
+    	   case '6':
+    	       value =6;
+    	       Num1 = (Num1*10) +value ;
+    		   LCD_voidSendChar(Local_u8Key);
+    	       break;
+    	   case '7':
+    	       value =7;
+    	       Num1 = (Num1*10) +value ;
+    		   LCD_voidSendChar(Local_u8Key);
+    	        break;
+       	   case '8':
+        	   value =8;
+        	   Num1 = (Num1*10) +value ;
+    		   LCD_voidSendChar(Local_u8Key);
+        	    break;
+           case '9':
+        	   value =9;
+        	   Num1 = (Num1*10) +value ;
+    		   LCD_voidSendChar(Local_u8Key);
+        	    break;
+    	   case '+':
+    		   LCD_voidSendChar(Local_u8Key);
+    		   Num2 =Num1;
+    		   Num1=0;
+               Operator = 1;
+          	    break;
+       	   case '-':
+       		   LCD_voidSendChar(Local_u8Key);
+       		   Num2 =Num1;
+         	   Num1=0;
+               Operator = 2;
+        	    break;
+           case '/':
+       		   LCD_voidSendChar(Local_u8Key);
+       		   Num2 =Num1;
+         	   Num1=0;
+               Operator = 3;
+        	    break;
+       	   case '*':
+       		   LCD_voidSendChar(Local_u8Key);
+       		   Num2 =Num1;
+         	   Num1=0;
+               Operator = 4;
+        	    break;
+           case '%':
+       		   LCD_voidSendChar(Local_u8Key);
+       		   Num2 =Num1;
+         	   Num1=0;
+               Operator = 5;
+        	    break;
+
+    	   case '=':
+       	       LCD_voidCursorBlinkerOff();
+    		   LCD_voidSendChar(Local_u8Key);
+    		   if(Operator == 1)
+    		   {
+    		       Result= (Num2 + Num1);
+    		   }
+    		   else if (Operator ==2 )
+    		   {
+    			   Result= (Num2 - Num1);
+    		   }
+    		   else if (Operator ==3 )
+    		   {
+    			   if(Num1==0)
+    			   {
+    				   _delay_ms(400);
+    				   LCD_voidWriteString(".");
+    				   _delay_ms(400);
+    				   LCD_voidWriteString(".");
+    				   _delay_ms(400);
+    				   LCD_voidWriteString(".");
+    				   _delay_ms(500);
+    				   LCD_voidClear();
+    				   LCD_voidWriteString("     ERROR !");
+    				   break;
+    			   }
+    			   else
+    			   {
+    			       Result= (Num2 / Num1);
+    			   }
+    		   }
+    		   else if (Operator ==4 )
+    		   {
+    			   Result= (Num2 * Num1);
+    		   }
+    		   else if (Operator ==5 )
+    		   {
+    			   Result= (Num2 % Num1);
+    		   }
+
+    		    LCD_voidWriteNumber(Result);
+
+    	        break;
+
+       }
+
+       }
+
+
+
+    }
+
+	return 0;
+}
+

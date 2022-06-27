@@ -1,0 +1,11 @@
+03-WRAPPING/WGIE/GIE_program.o: ../03-WRAPPING/WGIE/GIE_program.cpp \
+ ../03-WRAPPING/WGIE/../../00-LIB/BIT_MATH.h \
+ ../03-WRAPPING/WGIE/../../00-LIB/STD_TYPES.h \
+ ../03-WRAPPING/WGIE/../../04-MCAL/MGIE/MGIE_interface.h \
+ ../03-WRAPPING/WGIE/GIE_interface.h \
+ ../03-WRAPPING/WGIE/../WDIO/DIO_interface.h
+../03-WRAPPING/WGIE/../../00-LIB/BIT_MATH.h:
+../03-WRAPPING/WGIE/../../00-LIB/STD_TYPES.h:
+../03-WRAPPING/WGIE/../../04-MCAL/MGIE/MGIE_interface.h:
+../03-WRAPPING/WGIE/GIE_interface.h:
+../03-WRAPPING/WGIE/../WDIO/DIO_interface.h:

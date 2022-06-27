@@ -1,0 +1,10 @@
+03-WRAPPING/W8TMR/Timer0_program.o: \
+ ../03-WRAPPING/W8TMR/Timer0_program.cpp \
+ ../03-WRAPPING/W8TMR/../../00-LIB/BIT_MATH.h \
+ ../03-WRAPPING/W8TMR/../../00-LIB/STD_TYPES.h \
+ ../03-WRAPPING/W8TMR/../../04-MCAL/MTMR/MTMR_interface.h \
+ ../03-WRAPPING/W8TMR/Timer0_interface.h
+../03-WRAPPING/W8TMR/../../00-LIB/BIT_MATH.h:
+../03-WRAPPING/W8TMR/../../00-LIB/STD_TYPES.h:
+../03-WRAPPING/W8TMR/../../04-MCAL/MTMR/MTMR_interface.h:
+../03-WRAPPING/W8TMR/Timer0_interface.h:

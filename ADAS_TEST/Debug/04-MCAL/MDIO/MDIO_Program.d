@@ -1,0 +1,12 @@
+04-MCAL/MDIO/MDIO_Program.o: ../04-MCAL/MDIO/MDIO_Program.cpp \
+ ../04-MCAL/MDIO/../../00-LIB/BIT_MATH.h \
+ ../04-MCAL/MDIO/../../00-LIB/STD_TYPES.h \
+ ../04-MCAL/MDIO/../../00-LIB/ERROR_STATE.h \
+ ../04-MCAL/MDIO/MDIO_Interface.h ../04-MCAL/MDIO/MDIO_Config.h \
+ ../04-MCAL/MDIO/MDIO_Private.h
+../04-MCAL/MDIO/../../00-LIB/BIT_MATH.h:
+../04-MCAL/MDIO/../../00-LIB/STD_TYPES.h:
+../04-MCAL/MDIO/../../00-LIB/ERROR_STATE.h:
+../04-MCAL/MDIO/MDIO_Interface.h:
+../04-MCAL/MDIO/MDIO_Config.h:
+../04-MCAL/MDIO/MDIO_Private.h:

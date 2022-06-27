@@ -1,0 +1,45 @@
+#include "STD_TYPES.h"
+#include "BIT_MATH.h"
+#define F_CPU 8000000UL
+#include <util/delay.h>
+
+#include "DIO_interface.h"
+#include "TMR_interface.h"
+#include "GI_interface.h"
+
+void App_voidTogLed(void);
+
+int main(void)
+{
+	u8 Local_u8OCRValue =0;
+	DIO_u8Init();
+//	/* Enable GI */
+//	GI_voidEnable();
+//	/* Set Call back of Timer */
+//	TMR_u8Timer0CTCSetCallBack(&App_voidTogLed);
+	/* Start Timer */
+	TMR_voidTimer0Init();
+
+	while(1)
+	{
+		TMR_voidTimer0SetCompareMatchValue(Local_u8OCRValue);
+		Local_u8OCRValue ++ ;
+		_delay_ms(30);
+	}
+	return 0;
+
+}
+void App_voidTogLed(void)
+{
+	static u8 Local_u8Flag = 0;
+	if(Local_u8Flag == 0)
+	{
+		DIO_u8SetPinValue(DIO_u8_PORTA,DIO_u8_PIN0,DIO_u8_HIGH);
+		Local_u8Flag =1;
+	}
+	else
+	{
+		DIO_u8SetPinValue(DIO_u8_PORTA,DIO_u8_PIN0,DIO_u8_LOW);
+		Local_u8Flag =0;
+	}
+}

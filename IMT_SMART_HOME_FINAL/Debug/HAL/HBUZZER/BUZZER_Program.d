@@ -1,0 +1,16 @@
+HAL/HBUZZER/BUZZER_Program.o HAL/HBUZZER/BUZZER_Program.o:  \
+ ../HAL/HBUZZER/BUZZER_Program.c ../HAL/HBUZZER/../../LIB/LSTD_TYPES.h \
+  ../HAL/HBUZZER/../../LIB/LBIT_MATH.h \
+  ../HAL/HBUZZER/../../MCAL/MDIO/MDIO_Interface.h \
+  ../HAL/HBUZZER/../../MCAL/MDIO/../../LIB/LSTD_TYPES.h \
+  ../HAL/HBUZZER/HBUZZER_Interface.h
+
+../HAL/HBUZZER/../../LIB/LSTD_TYPES.h:
+
+../HAL/HBUZZER/../../LIB/LBIT_MATH.h:
+
+../HAL/HBUZZER/../../MCAL/MDIO/MDIO_Interface.h:
+
+../HAL/HBUZZER/../../MCAL/MDIO/../../LIB/LSTD_TYPES.h:
+
+../HAL/HBUZZER/HBUZZER_Interface.h:

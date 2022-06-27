@@ -1,0 +1,2 @@
+HAL/HSWITCH/HSWITCH_Program.o HAL/HSWITCH/HSWITCH_Program.o:  \
+ ../HAL/HSWITCH/HSWITCH_Program.c

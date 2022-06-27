@@ -1,0 +1,115 @@
+#include "STD_TYPES.h"
+#include "BIT_MATH.h"
+#define F_CPU 8000000UL
+#include <util/delay.h>
+
+#include "DIO_interface.h"
+#include "TMR_interface.h"
+#include "GI_interface.h"
+
+#include "KPD_interface.h"
+
+void App_voidTogLed(void);
+
+int main(void)
+{
+	u8 Local_u8OCRValue =0, Local_u8Key, value =0;
+	DIO_u8Init();
+//	/* Enable GI */
+//	GI_voidEnable();
+//	/* Set Call back of Timer */
+//	TMR_u8Timer0CTCSetCallBack(&App_voidTogLed);
+	/* Start Timer */
+	TMR_voidTimer0Init();
+
+	while(1)
+	{
+	    KPD_u8GetKey(&Local_u8Key);
+	    if(Local_u8Key != KPD_u8_KEY_NOT_PRESSED)
+	    {
+	    	   switch(Local_u8Key)
+	    	   {
+	    	   case '0':
+	    		   value=16;
+	    		   break;
+	    	   case '1':
+	    		   value =32;
+	    		   break;
+	    	   case '2':
+	    		   value =48;
+	    	       break;
+	    	   case '3':
+	    		   value =64;
+	    	       break;
+	    	   case '4':
+	    		   value =80;
+	    	       break;
+	    	   case '5':
+	    		   value =96;
+	    	       break;
+	    	   case '6':
+	    		   value =112;
+	    	       break;
+	    	   case '7':
+	    		   value =128;
+	    	        break;
+	       	   case '8':
+	       		   value =144;
+	        	    break;
+	           case '9':
+	        	   value =160;
+	        	    break;
+	           case '+':
+	        	   value =176;
+	        	    break;
+	           case '-':
+	        	   value =192;
+	        	    break;
+	           case '/':
+	        	   value =208;
+	        	    break;
+	           case '*':
+	        	   value =224;
+	        	    break;
+	           case '%':
+	        	   value =240;
+	        	    break;
+	           case '=':
+	        	   value =255;
+	        	    break;
+
+	    	   }
+	    }
+	    else
+	    {
+	    	value =0;
+	    }
+
+	    TMR_voidTimer0SetCompareMatchValue(value);
+
+	}
+	return 0;
+/*
+	while(1)
+	{
+		TMR_voidTimer0SetCompareMatchValue(Local_u8OCRValue);
+		 Local_u8OCRValue ++ ;
+		 _delay_ms(50);
+	}
+	return 0;
+	*/
+}
+void App_voidTogLed(void)
+{
+	static u8 Local_u8Flag = 0;
+	if(Local_u8Flag == 0)
+	{
+		DIO_u8SetPinValue(DIO_u8_PORTA,DIO_u8_PIN0,DIO_u8_HIGH);
+		Local_u8Flag =1;
+	}
+	else
+	{
+		DIO_u8SetPinValue(DIO_u8_PORTA,DIO_u8_PIN0,DIO_u8_LOW);
+		Local_u8Flag =0;
+	}
+}
